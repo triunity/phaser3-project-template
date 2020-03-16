@@ -6,6 +6,15 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = {
   mode: "development",
   devtool: "eval-source-map",
+  devServer: {
+    host:'0.0.0.0',
+  },
+  entry: path.resolve(__dirname, "../src/index.js"),
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "../src/"),
+    },
+  },
   module: {
     rules: [
       {
@@ -20,7 +29,7 @@ module.exports = {
         use: "raw-loader"
       },
       {
-        test: /\.(gif|png|jpe?g|svg|xml)$/i,
+        test: /\.(gif|png|jpe?g|svg|xml|mp3)$/i,
         use: "file-loader"
       }
     ]

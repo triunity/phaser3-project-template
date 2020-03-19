@@ -45,6 +45,10 @@ var cursors;
 var stars;
 var bombs;
 
+var coinMusic;
+var jumpsmallMusic;
+var jumpsuperMusic;
+
 var jumpDuration = 0;
 var isJumpSmall = true;
 var isJumpSuper = true;
@@ -122,9 +126,9 @@ function create() {
   lifeText = this.add.text(500, 16, 'Life: 3', { fontSize: '32px', fill: '#f00' });
   lifeText.setScrollFactor(0);
 
-  this.coinMusic = this.sound.add('coin');
-  this.jumpsmallMusic = this.sound.add('jumpsmall');
-  this.jumpsuperMusic = this.sound.add('jumpsuper');
+  coinMusic = this.sound.add('coin');
+  jumpsmallMusic = this.sound.add('jumpsmall');
+  jumpsuperMusic = this.sound.add('jumpsuper');
 }
 
 function update() {
@@ -158,14 +162,14 @@ function update() {
     this.time.delayedCall(200, function () {
       if (jumpDuration > 12) {
         if (isJumpSuper) {
-          this.jumpsuperMusic.play({ volume: 0.1 });
+          jumpsuperMusic.play({ volume: 0.1 });
           isJumpSuper = false;
           isJumpSmall = false;
         }
       }
 
       if (isJumpSmall) {
-        this.jumpsmallMusic.play({ volume: 0.1 });
+        jumpsmallMusic.play({ volume: 0.1 });
         isJumpSmall = false;
       }
     }, null, this);
@@ -180,7 +184,7 @@ function update() {
 }
 
 function collectStar (player, star) {
-  this.coinMusic.play({ volume: 0.1 });
+  coinMusic.play({ volume: 0.1 });
 
   star.disableBody(true, true);
 
